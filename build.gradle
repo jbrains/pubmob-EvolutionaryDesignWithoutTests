@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+
+    // Apply the application plugin to add support for building a CLI application
+    id 'application'
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    ext {
+        junitVersion = "5.4.2"
+        jqwikVersion = "1.2.0"
+    }
+
+    // This dependency is used by the application.
+    implementation "io.vavr:vavr:0.10.2"
+
+    // Writing tests depends on the JUnit framework at compile time
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${ext.junitVersion}"
+    testImplementation "net.jqwik:jqwik-api:${ext.jqwikVersion}"
+    testImplementation "org.mockito:mockito-core:2.28.2"
+
+    // Running tests needs the JUnit runner/engine
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${ext.junitVersion}"
+    testRuntimeOnly "net.jqwik:jqwik-engine:${ext.jqwikVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
