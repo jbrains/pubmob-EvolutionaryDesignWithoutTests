@@ -23,7 +23,7 @@ dependencies {
     // Writing tests depends on the JUnit framework at compile time
     testImplementation "org.junit.jupiter:junit-jupiter-api:${ext.junitVersion}"
     testImplementation "net.jqwik:jqwik-api:${ext.jqwikVersion}"
-    testImplementation "org.mockito:mockito-core:2.28.2"
+    testImplementation "org.mockito:mockito-core:3.6.28"
 
     // Running tests needs the JUnit runner/engine
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${ext.junitVersion}"
