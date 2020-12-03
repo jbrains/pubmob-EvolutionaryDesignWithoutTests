@@ -18,7 +18,7 @@ dependencies {
     }
 
     // This dependency is used by the application.
-    implementation "io.vavr:vavr:0.10.2"
+    implementation "io.vavr:vavr:1.0.0-alpha-3"
 
     // Writing tests depends on the JUnit framework at compile time
     testImplementation "org.junit.jupiter:junit-jupiter-api:${ext.junitVersion}"
