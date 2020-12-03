@@ -11,6 +11,10 @@ repositories {
     jcenter()
 }
 
+application {
+    mainClass.set("com.pubmob.pos.PointOfSaleTerminal")
+}
+
 dependencies {
     ext {
         junitVersion = "5.7.0"
