@@ -15,6 +15,10 @@ application {
     mainClass.set("com.pubmob.pos.PointOfSaleTerminal")
 }
 
+run {
+    standardInput = System.in
+}
+
 dependencies {
     ext {
         junitVersion = "5.7.0"
