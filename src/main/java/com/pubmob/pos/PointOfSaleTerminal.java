@@ -8,19 +8,15 @@ public class PointOfSaleTerminal {
         System.out.println("Point of Sale Terminal.");
 
         final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        input.lines().forEach(PointOfSaleTerminal::handleBarcode);
+        input.lines().takeWhile(line -> !"q".equals(line)).forEach(PointOfSaleTerminal::handleBarcode);
 
         System.out.println("Done.");
     }
 
     private static void handleBarcode(String barcode) {
-        if ("q".equals(barcode)) {
-            System.exit(0);
-        } else {
-            if ("12345".equals(barcode))
-                System.out.println("$5.50");
-            else
-                System.out.println("Error: barcode not found.");
-        }
+        if ("12345".equals(barcode))
+            System.out.println("$5.50");
+        else
+            System.out.println("Error: barcode not found.");
     }
 }
