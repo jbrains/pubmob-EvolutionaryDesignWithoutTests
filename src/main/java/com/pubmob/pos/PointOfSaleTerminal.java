@@ -19,13 +19,14 @@ public class PointOfSaleTerminal {
 
     private static void handleBarcode(String barcode) {
         final HashMap<String, Integer> barcodeToPrice = HashMap.of("12345", 550, "23456", 1015);
-        if (barcodeToPrice.containsKey(barcode))
-            System.out.println(formatPrice(barcodeToPrice.getOrElse(barcode, null)));
-        else
-            System.out.println("Error: barcode not found.");
+
+        System.out.println(
+                barcodeToPrice.get(barcode)
+                        .map(PointOfSaleTerminal::formatPrice)
+                        .getOrElse("Error: barcode not found."));
     }
 
     private static String formatPrice(int cents) {
-        return String.format("$%.2f", cents/100d);
+        return String.format("$%.2f", cents / 100d);
     }
 }
