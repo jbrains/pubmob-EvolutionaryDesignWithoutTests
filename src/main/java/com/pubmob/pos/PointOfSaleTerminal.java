@@ -19,10 +19,8 @@ public class PointOfSaleTerminal {
 
     private static void handleBarcode(String barcode) {
         final HashMap<String, Integer> barcodeToPrice = HashMap.of("12345", 550, "23456", 1015);
-        final HashMap<String, String> barcodeToFormattedPrice =
-                barcodeToPrice.mapValues(PointOfSaleTerminal::formatPrice);
-        if (barcodeToFormattedPrice.containsKey(barcode))
-            System.out.println(barcodeToFormattedPrice.getOrElse(barcode, null));
+        if (barcodeToPrice.containsKey(barcode))
+            System.out.println(formatPrice(barcodeToPrice.getOrElse(barcode, null)));
         else
             System.out.println("Error: barcode not found.");
     }
