@@ -7,8 +7,10 @@ public class PointOfSaleTerminal {
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
-        final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        input.lines().takeWhile(line -> !"q".equals(line)).forEach(PointOfSaleTerminal::handleBarcode);
+        new BufferedReader(new InputStreamReader(System.in))
+                .lines()
+                .takeWhile(line -> !"q".equals(line))
+                .forEach(PointOfSaleTerminal::handleBarcode);
 
         System.out.println("Done.");
     }
