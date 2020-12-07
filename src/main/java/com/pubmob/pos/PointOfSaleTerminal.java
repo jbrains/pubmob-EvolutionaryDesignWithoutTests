@@ -1,5 +1,7 @@
 package com.pubmob.pos;
 
+import io.vavr.collection.HashMap;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -16,10 +18,9 @@ public class PointOfSaleTerminal {
     }
 
     private static void handleBarcode(String barcode) {
-        if ("12345".equals(barcode))
-            System.out.println("$5.50");
-        else if ("23456".equals(barcode))
-            System.out.println("$10.15");
+        final HashMap<String, String> barcodeToPrice = HashMap.of("12345", "$5.50", "23456", "$10.15");
+        if (barcodeToPrice.containsKey(barcode))
+            System.out.println(barcodeToPrice.getOrElse(barcode, null));
         else
             System.out.println("Error: barcode not found.");
     }
