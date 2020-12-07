@@ -10,6 +10,7 @@ public class PointOfSaleTerminal {
         System.out.println("Point of Sale Terminal.");
 
         new BufferedReader(new InputStreamReader(System.in)).lines()
+                .map(String::trim)
                 .takeWhile(PointOfSaleTerminal::isNotQuitCommand)
                 .map(PointOfSaleTerminal::handleBarcode)
                 .forEach(System.out::println);
