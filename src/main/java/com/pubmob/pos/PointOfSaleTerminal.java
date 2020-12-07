@@ -10,10 +10,14 @@ public class PointOfSaleTerminal {
 
         final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         final String barcode = input.readLine();
-        if ("12345".equals(barcode))
-            System.out.println("$5.50");
-        else
-            System.out.println("Error: barcode not found.");
+        if("q".equals(barcode)) {
+
+        } else {
+            if ("12345".equals(barcode))
+                System.out.println("$5.50");
+            else
+                System.out.println("Error: barcode not found.");
+        }
 
         System.out.println("Done.");
     }
