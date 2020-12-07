@@ -18,6 +18,8 @@ public class PointOfSaleTerminal {
     private static void handleBarcode(String barcode) {
         if ("12345".equals(barcode))
             System.out.println("$5.50");
+        else if ("23456".equals(barcode))
+            System.out.println("$10.15");
         else
             System.out.println("Error: barcode not found.");
     }
