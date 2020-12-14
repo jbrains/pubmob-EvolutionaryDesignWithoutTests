@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class BarcodeInventory {
-
     private Map<String, Integer> inventory;
     private List<Integer> prices;
 

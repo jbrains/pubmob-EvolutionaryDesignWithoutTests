@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class PointOfSaleTerminal {
-
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
@@ -33,12 +32,4 @@ public class PointOfSaleTerminal {
     private static boolean isNotQuitCommand(String command) {
         return !"q".equals(command);
     }
-
 }
-
-
-
-
-
-
-
