@@ -22,15 +22,16 @@ public class PointOfSaleTerminal {
         System.out.println("Done.");
     }
 
-    private static String handleCommand(BarcodeInventory barcodeInventory, String barcode) {
-        if (barcode.equals("total")) {
-            return "Total: $0.00";
+    private static String handleCommand(BarcodeInventory barcodeInventory, String command) {
+        if (command.equals("total")) {
+            return "Total: " +
+                    BarcodeInventory.getTotal();
         }
-        return barcodeInventory.handleBarcode(barcode);
+        return barcodeInventory.handleBarcode(command);
     }
 
-    private static boolean isNotQuitCommand(String line) {
-        return !"q".equals(line);
+    private static boolean isNotQuitCommand(String command) {
+        return !"q".equals(command);
     }
 
 }
