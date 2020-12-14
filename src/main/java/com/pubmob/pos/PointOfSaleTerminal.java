@@ -8,10 +8,12 @@ public class PointOfSaleTerminal {
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
+        BarcodeInventory barcodeInventory = new BarcodeInventory();
+
         new BufferedReader(new InputStreamReader(System.in)).lines()
                 .map(String::trim)
                 .takeWhile(PointOfSaleTerminal::isNotQuitCommand)
-                .map(BarcodeInventory::handleBarcode)
+                .map(barcodeInventory::handleBarcode)
                 .forEach(System.out::println);
 
         System.out.println("Done.");
