@@ -25,7 +25,7 @@ public class PointOfSaleTerminal {
     private static String handleCommand(BarcodeInventory barcodeInventory, String command) {
         if (command.equals("total")) {
             return "Total: " +
-                    BarcodeInventory.getTotal();
+                    barcodeInventory.getTotal();
         }
         return barcodeInventory.handleBarcode(command);
     }
