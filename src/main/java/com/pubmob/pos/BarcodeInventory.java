@@ -1,7 +1,12 @@
 package com.pubmob.pos;
 
-import io.vavr.collection.List;
-import io.vavr.collection.Map;
+
+import io.vavr.control.Option;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class BarcodeInventory {
 
@@ -10,7 +15,7 @@ public class BarcodeInventory {
 
     public BarcodeInventory(Map<String, Integer> inventory) {
         this.inventory = inventory;
-        this.prices = List.empty();
+        this.prices = new ArrayList<>();
     }
 
     private static String formatPrice(int cents) {
@@ -18,12 +23,16 @@ public class BarcodeInventory {
     }
 
     String getTotal() {
-        return formatPrice(0);
+        return formatPrice(prices.stream().reduce(0, Integer::sum));
     }
 
     public String handleBarcode(final String barcode) {
-        return inventory.get(barcode)
+        Optional<Integer> opPrice = Optional.ofNullable(inventory.get(barcode));
+
+        opPrice.ifPresent(price -> prices.add(price));
+
+        return opPrice
                 .map(BarcodeInventory::formatPrice)
-                .getOrElse("Error: barcode not found.");
+                .orElse("Error: barcode not found.");
     }
 }

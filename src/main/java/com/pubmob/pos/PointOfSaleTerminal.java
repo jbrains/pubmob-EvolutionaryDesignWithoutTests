@@ -1,6 +1,6 @@
 package com.pubmob.pos;
 
-import io.vavr.collection.HashMap;
+import java.util.Map;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,7 +11,7 @@ public class PointOfSaleTerminal {
         System.out.println("Point of Sale Terminal.");
 
         BarcodeInventory barcodeInventory = new BarcodeInventory(
-                HashMap.of("12345", 550, "23456", 1015));
+                Map.of("12345", 550, "23456", 1015));
 
         new BufferedReader(new InputStreamReader(System.in)).lines()
                 .map(String::trim)
