@@ -1,8 +1,6 @@
 package com.pubmob.pos;
 
 
-import io.vavr.control.Option;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
