@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class BarcodeInventory {
+public class ShoppingCart {
     private Map<String, Integer> inventory;
     private List<Integer> prices;
 
-    public BarcodeInventory(Map<String, Integer> inventory) {
+    public ShoppingCart(Map<String, Integer> inventory) {
         this.inventory = inventory;
         this.prices = new ArrayList<>();
     }
@@ -31,7 +31,7 @@ public class BarcodeInventory {
         opPrice.ifPresent(price -> prices.add(price));
 
         return opPrice
-                .map(BarcodeInventory::formatPrice)
+                .map(ShoppingCart::formatPrice)
                 .orElse("Barcode not found: " + barcode + ".");
     }
 }

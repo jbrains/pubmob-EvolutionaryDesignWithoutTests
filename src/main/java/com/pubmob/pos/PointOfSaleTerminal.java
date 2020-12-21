@@ -9,24 +9,24 @@ public class PointOfSaleTerminal {
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
-        BarcodeInventory barcodeInventory = new BarcodeInventory(
+        ShoppingCart shoppingCart = new ShoppingCart(
                 Map.of("12345", 550, "23456", 1015));
 
         new BufferedReader(new InputStreamReader(System.in)).lines()
                 .map(String::trim)
                 .takeWhile(PointOfSaleTerminal::isNotQuitCommand)
-                .map(barcode -> handleCommand(barcodeInventory, barcode))
+                .map(barcode -> handleCommand(shoppingCart, barcode))
                 .forEach(System.out::println);
 
         System.out.println("Done.");
     }
 
-    private static String handleCommand(BarcodeInventory barcodeInventory, String command) {
+    private static String handleCommand(ShoppingCart shoppingCart, String command) {
         if (command.equals("total")) {
             return "Total: " +
-                    barcodeInventory.getTotal();
+                    shoppingCart.getTotal();
         }
-        return barcodeInventory.handleBarcode(command);
+        return shoppingCart.handleBarcode(command);
     }
 
     private static boolean isNotQuitCommand(String command) {
