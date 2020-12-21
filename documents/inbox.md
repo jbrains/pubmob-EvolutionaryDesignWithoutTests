@@ -1,7 +1,6 @@
 # Inbox
 
 - use `final` more consistently (IDEA setting?)
-- reset the "Sale" after the `total` command, so that the next shopper can buy things.
 - check that the `total` command works, even before the shopper has scanned a barcode.
 - rename `BarcodeInventory`.
 - split `BarcodeInventory` into smaller classes: separate finding barcodes from responding to finding a barcode.
