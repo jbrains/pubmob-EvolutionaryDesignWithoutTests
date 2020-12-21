@@ -20,7 +20,9 @@ public class BarcodeInventory {
     }
 
     String getTotal() {
-        return formatPrice(prices.stream().reduce(0, Integer::sum));
+        String formatPrice = formatPrice(prices.stream().reduce(0, Integer::sum));
+        this.prices = new ArrayList<>();
+        return formatPrice;
     }
 
     public String handleBarcode(final String barcode) {
