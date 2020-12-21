@@ -1,6 +1,5 @@
 # Inbox
 
-- use `final` more consistently (IDEA setting?) 
 - rename `BarcodeInventory`.
 - split `BarcodeInventory` into smaller classes: separate finding barcodes from responding to finding a barcode.Product Catalog and ShoppingCart
 - introduce abstractions for System.out? print action?

@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 
 public class ShoppingCart {
-    private Map<String, Integer> inventory;
-    private List<Integer> prices;
+    private final Map<String, Integer> inventory;
+    private final List<Integer> prices;
 
     public ShoppingCart(Map<String, Integer> inventory) {
         this.inventory = inventory;
@@ -21,11 +21,11 @@ public class ShoppingCart {
 
     String getTotal() {
         String formatPrice = formatPrice(prices.stream().reduce(0, Integer::sum));
-        this.prices = new ArrayList<>();
+        this.prices.clear();
         return formatPrice;
     }
 
-    public String handleBarcode(final String barcode) {
+    public String handleBarcode(String barcode) {
         Optional<Integer> opPrice = Optional.ofNullable(inventory.get(barcode));
 
         opPrice.ifPresent(price -> prices.add(price));
