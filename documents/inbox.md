@@ -7,3 +7,4 @@
 - introduce a value type for prices to replace `int`.
 - use Vavr `Stream` library in order to turn `takeWhile... not` into `takeUntil`, which @jbrains finds easier to read.
 - who gets the responsibility to reset the basket? Should be outside of getTotal(). and maybe use "new ShoppingCart()"
+- externalize user facing strings/text
