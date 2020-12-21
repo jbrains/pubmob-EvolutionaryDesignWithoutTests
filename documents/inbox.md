@@ -1,7 +1,6 @@
 # Inbox
 
 - use `final` more consistently (IDEA setting?)
-- change the "barcode not found" message so that Gradle rich console doesn't parse it: don't let it start with `error:`.
 - reset the "Sale" after the `total` command, so that the next shopper can buy things.
 - check that the `total` command works, even before the shopper has scanned a barcode.
 - rename `BarcodeInventory`.
