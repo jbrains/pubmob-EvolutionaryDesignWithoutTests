@@ -28,10 +28,14 @@ public class ShoppingCart {
     public String handleBarcode(String barcode) {
         Optional<Integer> opPrice = Optional.ofNullable(inventory.get(barcode));
 
-        opPrice.ifPresent(price -> prices.add(price));
+        opPrice.ifPresent(price -> addToCart(price));
 
         return opPrice
                 .map(ShoppingCart::formatPrice)
                 .orElse("Barcode not found: " + barcode + ".");
+    }
+
+    private boolean addToCart(Integer price) {
+        return prices.add(price);
     }
 }
