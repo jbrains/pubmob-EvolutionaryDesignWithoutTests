@@ -6,3 +6,9 @@ build
 
 # IntelliJ IDEA project files
 .idea
+
+#eclipse
+.classpath
+.project
+.settings/
+bin/
