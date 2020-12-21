@@ -30,6 +30,6 @@ public class BarcodeInventory {
 
         return opPrice
                 .map(BarcodeInventory::formatPrice)
-                .orElse("Barcode not found.");
+                .orElse("Barcode not found: " + barcode + ".");
     }
 }
