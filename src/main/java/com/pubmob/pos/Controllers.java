@@ -12,22 +12,18 @@ public class Controllers {
         this.purchaseInProgress = purchaseInProgress;
     }
 
-    private static String formatPrice(int cents) {
-        return String.format("$%.2f", cents / 100d);
-    }
-
     public String handleTotal() {
-        int total = purchaseInProgress.finishPurchase();
-        return formatPrice(total);
+        final Price totalAsPrice = purchaseInProgress.finishPurchase();
+        return totalAsPrice.formatPrice();
     }
 
     public String handleBarcode(String barcode) {
-        Optional<Integer> maybePrice = productCatalog.getPrice(barcode);
+        final Optional<Price> maybePriceForReal = productCatalog.getPrice(barcode);
 
-        maybePrice.ifPresent(price -> purchaseInProgress.addItemPrice(price));
+        maybePriceForReal.ifPresent(price -> purchaseInProgress.addItemPrice(price));
 
-        return maybePrice
-                .map(Controllers::formatPrice)
+        return maybePriceForReal
+                .map(Price::formatPrice)
                 .orElse(String.format("Barcode not found: %s.", barcode));
     }
 }

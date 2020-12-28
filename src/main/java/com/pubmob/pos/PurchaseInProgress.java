@@ -10,11 +10,11 @@ public class PurchaseInProgress {
         this.prices = new ArrayList<>();
     }
 
-    public boolean addItemPrice(final int price) {
-        return prices.add(price);
+    public boolean addItemPrice(Price price) {
+        return prices.add(price.getPrice());
     }
 
-    public int calculateTotal() {
+    private int calculateTotal() {
         return prices.stream().reduce(0, Integer::sum);
     }
 
@@ -22,8 +22,8 @@ public class PurchaseInProgress {
         prices.clear();
     }
 
-    public int finishPurchase() {
-        int total = calculateTotal();
+    public Price finishPurchase() {
+        final Price total = new Price(calculateTotal());
         reset();
         return total;
     }

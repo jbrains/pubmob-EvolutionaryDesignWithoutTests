@@ -4,13 +4,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public class ProductCatalog {
-    final Map<String, Integer> inventory;
+    private final Map<String, Price> productCodePriceMap;
 
-    public ProductCatalog(Map<String, Integer> inventory) {
-        this.inventory = inventory;
+    public ProductCatalog(final Map<String, Price> productCodePriceMap) {
+        this.productCodePriceMap = productCodePriceMap;
     }
 
-    Optional<Integer> getPrice(String barcode) {
-        return Optional.ofNullable(inventory.get(barcode));
+    public Optional<Price> getPrice(final String barcode) {
+        return Optional.ofNullable(productCodePriceMap.get(barcode));
     }
 }
