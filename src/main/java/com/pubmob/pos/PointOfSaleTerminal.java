@@ -1,9 +1,8 @@
 package com.pubmob.pos;
 
-import java.util.Map;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 public class PointOfSaleTerminal {
     public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class PointOfSaleTerminal {
 
     private static String handleCommand(ShoppingCart shoppingCart, String command) {
         if ("total".equals(command)) {
-            return "Total: %s".formatted(shoppingCart.getTotal());
+            return String.format("Total: %s", shoppingCart.getTotal());
         }
         return shoppingCart.handleBarcode(command);
     }
