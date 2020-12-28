@@ -4,12 +4,12 @@ package com.pubmob.pos;
 import java.util.Optional;
 
 public class Controllers {
-    private final PurchaseInProgress shoppingCart;
+    private final PurchaseInProgress purchaseInProgress;
     private final ProductCatalog productCatalog;
 
-    public Controllers(ProductCatalog productCatalog, final PurchaseInProgress shoppingCart) {
+    public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
-        this.shoppingCart = shoppingCart;
+        this.purchaseInProgress = purchaseInProgress;
     }
 
     private static String formatPrice(int cents) {
@@ -17,14 +17,14 @@ public class Controllers {
     }
 
     public String handleTotal() {
-        int total = shoppingCart.finishPurchase();
+        int total = purchaseInProgress.finishPurchase();
         return formatPrice(total);
     }
 
     public String handleBarcode(String barcode) {
         Optional<Integer> maybePrice = productCatalog.getPrice(barcode);
 
-        maybePrice.ifPresent(price -> shoppingCart.addItemPrice(price));
+        maybePrice.ifPresent(price -> purchaseInProgress.addItemPrice(price));
 
         return maybePrice
                 .map(Controllers::formatPrice)
