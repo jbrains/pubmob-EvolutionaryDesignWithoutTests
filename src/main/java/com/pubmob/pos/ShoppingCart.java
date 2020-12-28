@@ -10,15 +10,15 @@ public class ShoppingCart {
         this.prices = new ArrayList<>();
     }
 
-    public void emptyShoppingCart() {
-        prices.clear();
+    public boolean addItemPrice(final int price) {
+        return prices.add(price);
     }
 
     public int calculateTotal() {
         return prices.stream().reduce(0, Integer::sum);
     }
 
-    public boolean addItemPrice(final int price) {
-        return prices.add(price);
+    public void emptyShoppingCart() {
+        prices.clear();
     }
 }
