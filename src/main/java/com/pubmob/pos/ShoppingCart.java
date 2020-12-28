@@ -3,15 +3,14 @@ package com.pubmob.pos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class ShoppingCart {
-    private final Map<String, Integer> inventory;
     private final List<Integer> prices;
+    private final ProductCatalog productCatalog;
 
-    public ShoppingCart(Map<String, Integer> inventory) {
-        this.inventory = inventory;
+    public ShoppingCart(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
         this.prices = new ArrayList<>();
     }
 
@@ -26,12 +25,16 @@ public class ShoppingCart {
     }
 
     public String handleBarcode(String barcode) {
-        Optional<Integer> maybePrice = Optional.ofNullable(inventory.get(barcode));
+        Optional<Integer> maybePrice = productCatalog.getPrice(barcode);
 
         maybePrice.ifPresent(price -> prices.add(price));
 
         return maybePrice
                 .map(ShoppingCart::formatPrice)
                 .orElse(String.format("Barcode not found: %s.", barcode));
+    }
+
+    private Optional<Integer> getPrice(String barcode) {
+        return productCatalog.getPrice(barcode);
     }
 }

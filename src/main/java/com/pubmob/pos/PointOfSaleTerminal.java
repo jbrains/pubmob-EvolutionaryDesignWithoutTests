@@ -11,7 +11,7 @@ public class PointOfSaleTerminal {
         System.out.println("Point of Sale Terminal.");
 
         ShoppingCart shoppingCart = new ShoppingCart(
-                Map.of("12345", 550, "23456", 1015));
+                new ProductCatalog(Map.of("12345", 550, "23456", 1015)));
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
                 .map(String::trim)
