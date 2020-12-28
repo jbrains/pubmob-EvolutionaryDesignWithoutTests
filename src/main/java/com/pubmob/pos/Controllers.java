@@ -30,9 +30,4 @@ public class Controllers {
                 .map(Controllers::formatPrice)
                 .orElse(String.format("Barcode not found: %s.", barcode));
     }
-
-    // REFACTOR Remove me
-    private Optional<Integer> getPrice(String barcode) {
-        return productCatalog.getPrice(barcode);
-    }
 }
