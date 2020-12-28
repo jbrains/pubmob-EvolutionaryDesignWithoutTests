@@ -23,8 +23,7 @@ public class PointOfSaleTerminal {
 
     private static String handleCommand(ShoppingCart shoppingCart, String command) {
         if (command.equals("total")) {
-            return "Total: " +
-                    shoppingCart.getTotal();
+            return "Total: %s".formatted(shoppingCart.getTotal());
         }
         return shoppingCart.handleBarcode(command);
     }

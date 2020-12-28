@@ -16,7 +16,7 @@ public class ShoppingCart {
     }
 
     private static String formatPrice(int cents) {
-        return String.format("$%.2f", cents / 100d);
+        return "$%.2f".formatted(cents / 100d);
     }
 
     String getTotal() {
@@ -32,6 +32,6 @@ public class ShoppingCart {
 
         return opPrice
                 .map(ShoppingCart::formatPrice)
-                .orElse("Barcode not found: " + barcode + ".");
+                .orElse("Barcode not found: %s.".formatted(barcode));
     }
 }
