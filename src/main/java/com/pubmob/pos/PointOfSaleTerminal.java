@@ -14,6 +14,7 @@ public class PointOfSaleTerminal {
 
         new BufferedReader(new InputStreamReader(System.in)).lines()
                 .map(String::trim)
+                .filter(line -> !line.isEmpty())
                 .takeWhile(PointOfSaleTerminal::isNotQuitCommand)
                 .map(barcode -> handleCommand(shoppingCart, barcode))
                 .forEach(System.out::println);
