@@ -21,4 +21,10 @@ public class PurchaseInProgress {
     public void reset() {
         prices.clear();
     }
+
+    public int finishPurchase() {
+        int total = calculateTotal();
+        reset();
+        return total;
+    }
 }

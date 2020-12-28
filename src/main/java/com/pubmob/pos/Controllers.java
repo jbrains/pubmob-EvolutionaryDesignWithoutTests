@@ -17,9 +17,8 @@ public class Controllers {
     }
 
     public String handleTotal() {
-        String formatPrice = formatPrice(shoppingCart.calculateTotal());
-        shoppingCart.reset();
-        return formatPrice;
+        int total = shoppingCart.finishPurchase();
+        return formatPrice(total);
     }
 
     public String handleBarcode(String barcode) {
