@@ -19,7 +19,7 @@ public class ShoppingCart {
         return "$%.2f".formatted(cents / 100d);
     }
 
-    String getTotal() {
+    public String getTotal() {
         String formatPrice = formatPrice(prices.stream().reduce(0, Integer::sum));
         this.prices.clear();
         return formatPrice;
