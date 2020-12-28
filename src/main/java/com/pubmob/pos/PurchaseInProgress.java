@@ -18,7 +18,7 @@ public class PurchaseInProgress {
         return prices.stream().reduce(0, Integer::sum);
     }
 
-    public void reset() {
+    private void reset() {
         prices.clear();
     }
 
