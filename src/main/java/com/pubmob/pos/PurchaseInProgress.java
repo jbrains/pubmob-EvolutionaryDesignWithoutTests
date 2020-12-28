@@ -11,7 +11,7 @@ public class PurchaseInProgress {
     }
 
     public boolean addItemPrice(Price price) {
-        return prices.add(price.getPrice());
+        return prices.add(price.inCents());
     }
 
     private int calculateTotal() {

@@ -1,17 +1,17 @@
 package com.pubmob.pos;
 
 public class Price {
-    private final int price;
+    private final int cents;
 
-    public Price(int price) {
-        this.price = price;
+    public Price(int cents) {
+        this.cents = cents;
     }
 
     public String formatPrice() {
-        return String.format("$%.2f", price / 100d);
+        return String.format("$%.2f", cents / 100d);
     }
 
-    public int getPrice() {
-        return price;
+    public int inCents() {
+        return cents;
     }
 }
