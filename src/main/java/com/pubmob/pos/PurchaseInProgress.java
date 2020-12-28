@@ -3,10 +3,10 @@ package com.pubmob.pos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class PurchaseInProgress {
     private final List<Integer> prices;
 
-    public ShoppingCart() {
+    public PurchaseInProgress() {
         this.prices = new ArrayList<>();
     }
 
@@ -18,7 +18,7 @@ public class ShoppingCart {
         return prices.stream().reduce(0, Integer::sum);
     }
 
-    public void emptyShoppingCart() {
+    public void reset() {
         prices.clear();
     }
 }

@@ -4,10 +4,10 @@ package com.pubmob.pos;
 import java.util.Optional;
 
 public class Controllers {
-    private final ShoppingCart shoppingCart;
+    private final PurchaseInProgress shoppingCart;
     private final ProductCatalog productCatalog;
 
-    public Controllers(ProductCatalog productCatalog, final ShoppingCart shoppingCart) {
+    public Controllers(ProductCatalog productCatalog, final PurchaseInProgress shoppingCart) {
         this.productCatalog = productCatalog;
         this.shoppingCart = shoppingCart;
     }
@@ -18,7 +18,7 @@ public class Controllers {
 
     public String getTotal() {
         String formatPrice = formatPrice(shoppingCart.calculateTotal());
-        shoppingCart.emptyShoppingCart();
+        shoppingCart.reset();
         return formatPrice;
     }
 
