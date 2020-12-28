@@ -26,7 +26,7 @@ public class PointOfSaleTerminal {
 
     private static String handleCommand(Controllers controllers, String command) {
         if ("total".equals(command)) {
-            return String.format("Total: %s", controllers.getTotal());
+            return String.format("Total: %s", controllers.handleTotal());
         }
         return controllers.handleBarcode(command);
     }

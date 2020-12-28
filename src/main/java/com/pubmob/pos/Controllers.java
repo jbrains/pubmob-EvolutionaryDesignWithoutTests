@@ -16,7 +16,7 @@ public class Controllers {
         return String.format("$%.2f", cents / 100d);
     }
 
-    public String getTotal() {
+    public String handleTotal() {
         String formatPrice = formatPrice(shoppingCart.calculateTotal());
         shoppingCart.reset();
         return formatPrice;
