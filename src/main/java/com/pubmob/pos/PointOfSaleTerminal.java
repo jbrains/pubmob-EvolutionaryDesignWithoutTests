@@ -1,5 +1,7 @@
 package com.pubmob.pos;
 
+import io.vavr.collection.Stream;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -11,10 +13,10 @@ public class PointOfSaleTerminal {
         ShoppingCart shoppingCart = new ShoppingCart(
                 Map.of("12345", 550, "23456", 1015));
 
-        new BufferedReader(new InputStreamReader(System.in)).lines()
+        Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
                 .map(String::trim)
                 .filter(line -> !line.isEmpty())
-                .takeWhile(PointOfSaleTerminal::isNotQuitCommand)
+                .takeUntil(PointOfSaleTerminal::isQuitCommand)
                 .map(barcode -> handleCommand(shoppingCart, barcode))
                 .forEach(System.out::println);
 
@@ -28,7 +30,7 @@ public class PointOfSaleTerminal {
         return shoppingCart.handleBarcode(command);
     }
 
-    private static boolean isNotQuitCommand(String command) {
-        return !"q".equals(command);
+    private static boolean isQuitCommand(String command) {
+        return "q".equals(command);
     }
 }

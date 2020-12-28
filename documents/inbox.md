@@ -1,6 +1,5 @@
 # Today's session plan
 
-- use Vavr `Stream` library in order to turn `takeWhile... not` into `takeUntil`, which @jbrains finds easier to read.
 - split `ShoppingCart` into smaller classes: separate finding barcodes from responding to finding a barcode. `ProductCatalog` and `ShoppingCart`
 - add optional sales tax called "GST" of 5%
 - add optional sales tax called "PST" of 8%
