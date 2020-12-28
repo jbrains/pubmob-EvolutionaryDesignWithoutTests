@@ -10,24 +10,25 @@ public class PointOfSaleTerminal {
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
-        ShoppingCart shoppingCart = new ShoppingCart(
-                new ProductCatalog(Map.of("12345", 550, "23456", 1015)));
+        Controllers controllers = new Controllers(
+                new ProductCatalog(Map.of("12345", 550, "23456", 1015)),
+                new ShoppingCart());
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
                 .map(String::trim)
                 .filter(line -> !line.isEmpty())
                 .takeUntil(PointOfSaleTerminal::isQuitCommand)
-                .map(barcode -> handleCommand(shoppingCart, barcode))
+                .map(barcode -> handleCommand(controllers, barcode))
                 .forEach(System.out::println);
 
         System.out.println("Done.");
     }
 
-    private static String handleCommand(ShoppingCart shoppingCart, String command) {
+    private static String handleCommand(Controllers controllers, String command) {
         if ("total".equals(command)) {
-            return String.format("Total: %s", shoppingCart.getTotal());
+            return String.format("Total: %s", controllers.getTotal());
         }
-        return shoppingCart.handleBarcode(command);
+        return controllers.handleBarcode(command);
     }
 
     private static boolean isQuitCommand(String command) {
