@@ -13,17 +13,17 @@ public class Controllers {
     }
 
     public String handleTotal() {
-        final Price totalAsPrice = purchaseInProgress.finishPurchase();
+        final Product totalAsPrice = purchaseInProgress.finishPurchase();
         return totalAsPrice.formatPrice();
     }
 
     public String handleBarcode(String barcode) {
-        final Optional<Price> maybePriceForReal = productCatalog.findPrice(barcode);
+        final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
         maybePriceForReal.ifPresent(price -> purchaseInProgress.addItemPrice(price));
 
         return maybePriceForReal
-                .map(Price::formatPrice)
+                .map(Product::formatPrice)
                 .orElse(String.format("Barcode not found: %s.", barcode));
     }
 }

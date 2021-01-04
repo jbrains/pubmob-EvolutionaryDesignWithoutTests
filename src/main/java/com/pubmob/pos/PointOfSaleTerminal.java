@@ -11,7 +11,7 @@ public class PointOfSaleTerminal {
         System.out.println("Point of Sale Terminal.");
 
         Controllers controllers = new Controllers(
-                new ProductCatalog(Map.of("12345", new Price(550), "23456", new Price(1015))),
+                new ProductCatalog(Map.of("12345", new Product(550), "23456", new Product(1015))),
                 new PurchaseInProgress());
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())

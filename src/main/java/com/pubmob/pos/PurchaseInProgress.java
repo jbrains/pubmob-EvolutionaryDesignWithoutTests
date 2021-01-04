@@ -4,30 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseInProgress {
-    private final List<Price> prices;
+    private final List<Product> products;
 
     public PurchaseInProgress() {
-        this.prices = new ArrayList<>();
+        this.products = new ArrayList<>();
     }
 
-    public boolean addItemPrice(Price price) {
-        return prices.add(price);
-    }
-
-    private Price cost(Price price) {
-        return price;
+    public boolean addItemPrice(Product product) {
+        return products.add(product);
     }
 
     private int calculateTotal() {
-        return prices.stream().map(this::cost).map(Price::inCents).reduce(0, Integer::sum);
+        return products.stream().map(Product::cost).reduce(0, Integer::sum);
     }
 
     private void reset() {
-        prices.clear();
+        products.clear();
     }
 
-    public Price finishPurchase() {
-        final Price total = new Price(calculateTotal());
+    // SMELL We're using Product here to mean "Monetary Amount"
+    // so that we can reuse the formatting.
+    public Product finishPurchase() {
+        // SMELL Make sure the "tax applies" is false, so that we don't see "G"
+        final Product total = new Product(calculateTotal(), false);
         reset();
         return total;
     }

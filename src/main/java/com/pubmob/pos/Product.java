@@ -1,17 +1,21 @@
 package com.pubmob.pos;
 
-public class Price {
+public class Product {
 
     private final int cents;
     private final boolean gstApplies;
 
-    public Price(final int cents, final boolean gstApplies) {
+    public Product(final int cents, final boolean gstApplies) {
         this.cents = cents;
         this.gstApplies = gstApplies;
     }
 
-    public Price(int cents) {
+    public Product(int cents) {
         this(cents, false);
+    }
+
+    public int cost() {
+        return inCents();
     }
 
     public String formatPrice() {
