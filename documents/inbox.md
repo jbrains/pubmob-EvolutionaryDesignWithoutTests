@@ -1,7 +1,11 @@
 # Today's session plan
 
 - add optional sales tax called "GST" of 5%
+    - format the price with "G"
+    - add the tax amount when computing the total of a purchase
 - add optional sales tax called "PST" of 8%
+    - format the price with "P"
+    - add the tax amount when computing the total of a purchase
 
 # Inbox
 
