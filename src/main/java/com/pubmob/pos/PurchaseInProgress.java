@@ -14,8 +14,12 @@ public class PurchaseInProgress {
         return prices.add(price.inCents());
     }
 
+    private Price cost(Price price) {
+        return price;
+    }
+
     private int calculateTotal() {
-        return prices.stream().reduce(0, Integer::sum);
+        return prices.stream().map(Price::new).map(this::cost).map(Price::inCents).reduce(0, Integer::sum);
     }
 
     private void reset() {
