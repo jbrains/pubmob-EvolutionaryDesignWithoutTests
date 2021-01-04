@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseInProgress {
-    private final List<Integer> prices;
+    private final List<Price> prices;
 
     public PurchaseInProgress() {
         this.prices = new ArrayList<>();
     }
 
     public boolean addItemPrice(Price price) {
-        return prices.add(price.inCents());
+        return prices.add(price);
     }
 
     private Price cost(Price price) {
@@ -19,7 +19,7 @@ public class PurchaseInProgress {
     }
 
     private int calculateTotal() {
-        return prices.stream().map(Price::new).map(this::cost).map(Price::inCents).reduce(0, Integer::sum);
+        return prices.stream().map(this::cost).map(Price::inCents).reduce(0, Integer::sum);
     }
 
     private void reset() {
