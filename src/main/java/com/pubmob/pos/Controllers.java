@@ -12,7 +12,7 @@ public class Controllers {
     }
 
     public String handleTotal() {
-        return TotalFormatter.formatTotal(purchaseInProgress.finishPurchase());
+        return MonetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase());
     }
 
     public String handleBarcode(String barcode) {

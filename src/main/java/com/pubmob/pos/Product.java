@@ -25,7 +25,7 @@ public class Product {
 
     public String formatPrice() {
         final String gstApplied = gstApplies ? " G" : "";
-        // REFACTOR Use formatTotal() for this
+        // REFACTOR Use formatMonetaryAmount() for this
         return String.format("$%.2f%s", netPrice / 100d, gstApplied);
     }
 
