@@ -1,29 +1,35 @@
 package com.pubmob.pos;
 
 public class Product {
-    private final int cents;
+    private final int gstRateInPercentagePoints = 5;
+
+    private final int netPrice;
     private final boolean gstApplies;
 
-    public Product(final int cents, final boolean gstApplies) {
-        this.cents = cents;
+    public Product(final int netPrice, final boolean gstApplies) {
+        this.netPrice = netPrice;
         this.gstApplies = gstApplies;
     }
 
-    public Product(int cents) {
-        this(cents, false);
+    public Product(int netPrice) {
+        this(netPrice, false);
     }
 
     public int cost() {
-        return gstApplies ? ((int) Math.round(1.05d * inCents())) : inCents();
+        return netPrice() + (gstApplies ? salesTaxInCents() : 0);
+    }
+
+    private int salesTaxInCents() {
+        return (int) Math.round(this.gstRateInPercentagePoints * 0.01d * netPrice());
     }
 
     public String formatPrice() {
         final String gstApplied = gstApplies ? " G" : "";
         // REFACTOR Use formatTotal() for this
-        return String.format("$%.2f%s", cents / 100d, gstApplied);
+        return String.format("$%.2f%s", netPrice / 100d, gstApplied);
     }
 
-    public int inCents() {
-        return cents;
+    public int netPrice() {
+        return netPrice;
     }
 }
