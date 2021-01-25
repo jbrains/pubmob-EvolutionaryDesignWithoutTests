@@ -1,7 +1,7 @@
 package com.pubmob.pos;
 
 public class Product {
-    private final int gstRateInPercentagePoints = 5;
+    private final static int gstRateInPercentagePoints = 5;
 
     private final int netPrice;
     private final boolean gstApplies;
