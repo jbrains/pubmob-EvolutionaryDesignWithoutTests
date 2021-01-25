@@ -13,7 +13,7 @@ public class Controllers {
 
     public String handleTotal() {
         final Product totalAsPrice = purchaseInProgress.finishPurchase();
-        return totalAsPrice.formatPrice();
+        return TotalFormatter.formatTotal(totalAsPrice.inCents());
     }
 
     public String handleBarcode(String barcode) {
