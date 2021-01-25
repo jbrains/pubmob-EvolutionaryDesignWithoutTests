@@ -1,7 +1,6 @@
 package com.pubmob.pos;
 
 public class Product {
-
     private final int cents;
     private final boolean gstApplies;
 

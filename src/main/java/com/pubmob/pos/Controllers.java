@@ -1,6 +1,5 @@
 package com.pubmob.pos;
 
-
 import java.util.Optional;
 
 public class Controllers {
