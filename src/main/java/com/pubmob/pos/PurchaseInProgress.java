@@ -22,12 +22,9 @@ public class PurchaseInProgress {
         products.clear();
     }
 
-    // SMELL We're using Product here to mean "Monetary Amount"
-    // so that we can reuse the formatting.
     public int finishPurchase() {
-        // SMELL Make sure the "tax applies" is false, so that we don't see "G"
-        final Product total = new Product(calculateTotal(), false);
+        final int totalInCents = calculateTotal();
         reset();
-        return total.inCents();
+        return totalInCents;
     }
 }
