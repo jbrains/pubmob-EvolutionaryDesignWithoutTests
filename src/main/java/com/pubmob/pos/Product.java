@@ -14,7 +14,7 @@ public class Product {
     }
 
     public int cost() {
-        return inCents();
+        return gstApplies ? ((int) Math.round(1.05d * inCents())) : inCents();
     }
 
     public String formatPrice() {
