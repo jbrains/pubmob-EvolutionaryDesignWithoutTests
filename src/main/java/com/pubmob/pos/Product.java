@@ -25,11 +25,16 @@ public class Product {
     }
 
     public String formatPrice() {
-        final String anyTaxPresent = gstApplies || pstApplies ? " " : "";
-        final String gstApplied = gstApplies ? "G" : "";
-        final String pstApplied = pstApplies ? "P" : "";
+        final String anyTaxApplied = textIfApplies(gstApplies || pstApplies, " ");
+        final String gstApplied = textIfApplies(gstApplies, "G");
+        final String pstApplied = textIfApplies(pstApplies, "P");
         // REFACTOR Use formatMonetaryAmount() for this
-        return String.format("$%.2f%s%s%s", netPrice / 100d, anyTaxPresent, gstApplied, pstApplied);
+        return String.format("$%.2f%s%s%s", netPrice / 100d, anyTaxApplied, gstApplied, pstApplied);
+    }
+
+    // SMELL I don't like this function name
+    private String textIfApplies(final boolean applies, final String text) {
+        return applies ? text : "";
     }
 
     public int netPrice() {
