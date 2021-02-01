@@ -13,8 +13,9 @@ public class PointOfSaleTerminal {
         Controllers controllers = new Controllers(
                 new ProductCatalog(
                         Map.of(
-                            "12345", new Product(550, false, true),
-                            "23456", new Product(1015, true, false))),
+                                "12345", new Product(550, false, true),
+                                "23456", new Product(1015, true, false),
+                                "34567", new Product(1000, true, true))),
                 new PurchaseInProgress());
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
