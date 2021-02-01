@@ -25,7 +25,7 @@ public class Product {
     }
 
     public String formatPrice() {
-        final String anyTaxApplied = " ";
+        final String anyTaxApplied = gstApplies || pstApplies ? " " : "";
         final String gstApplied = gstApplies ? anyTaxApplied + "G" : "";
         final String pstApplied = pstApplies ? anyTaxApplied + "P" : "";
         // REFACTOR Use formatMonetaryAmount() for this
