@@ -15,9 +15,12 @@ public class Product {
     }
 
     public int cost() {
-        return netPrice()
-                + (gstApplies ? salesTaxInCents(this.gstRateInPercentagePoints) : 0)
-                + (pstApplies ? salesTaxInCents(this.pstRateInPercentagePoints) : 0);
+        return netPrice() + salesTaxes();
+    }
+
+    private int salesTaxes() {
+        return (gstApplies ? salesTaxInCents(this.gstRateInPercentagePoints) : 0)
+            + (pstApplies ? salesTaxInCents(this.pstRateInPercentagePoints) : 0);
     }
 
     private int salesTaxInCents(int percentagePoints) {
