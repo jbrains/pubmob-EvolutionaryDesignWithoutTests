@@ -25,10 +25,9 @@ public class Product {
     }
 
     public String formatPrice() {
-        final String gstApplied = gstApplies ? " " +
-                "G" : "";
-        final String pstApplied = pstApplies ? " " +
-                "P" : "";
+        final String anyTaxApplied = " ";
+        final String gstApplied = gstApplies ? anyTaxApplied + "G" : "";
+        final String pstApplied = pstApplies ? anyTaxApplied + "P" : "";
         // REFACTOR Use formatMonetaryAmount() for this
         return String.format("$%.2f%s%s", netPrice / 100d, gstApplied, pstApplied);
     }
