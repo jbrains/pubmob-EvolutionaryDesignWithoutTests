@@ -28,11 +28,11 @@ public class Product {
     }
 
     public String formatPrice() {
+        final String formattedNetPrice = MonetaryAmountFormatter.formatMonetaryAmount(this.netPrice);
         final String anyTaxApplied = textIfApplies(gstApplies || pstApplies, " ");
         final String gstApplied = textIfApplies(gstApplies, "G");
         final String pstApplied = textIfApplies(pstApplies, "P");
-        // REFACTOR Use formatMonetaryAmount() for this
-        return String.format("$%.2f%s%s%s", netPrice / 100d, anyTaxApplied, gstApplied, pstApplied);
+        return String.format("%s%s%s%s", formattedNetPrice, anyTaxApplied, gstApplied, pstApplied);
     }
 
     // SMELL I don't like this function name
