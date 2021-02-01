@@ -16,8 +16,8 @@ public class Product {
 
     public int cost() {
         return netPrice()
-            + (gstApplies ? salesTaxInCents(this.gstRateInPercentagePoints) : 0)
-            + (pstApplies ? salesTaxInCents(this.pstRateInPercentagePoints) : 0);
+                + (gstApplies ? salesTaxInCents(this.gstRateInPercentagePoints) : 0)
+                + (pstApplies ? salesTaxInCents(this.pstRateInPercentagePoints) : 0);
     }
 
     private int salesTaxInCents(int percentagePoints) {
@@ -26,7 +26,9 @@ public class Product {
 
     public String formatPrice() {
         final String gstApplied = gstApplies ? " G" : "";
-        final String pstApplied = pstApplies ? " P" : "";
+        final String pstApplied = pstApplies
+                ? (gstApplies ? "" : " ") + "P"
+                : "";
         // REFACTOR Use formatMonetaryAmount() for this
         return String.format("$%.2f%s%s", netPrice / 100d, gstApplied, pstApplied);
     }
