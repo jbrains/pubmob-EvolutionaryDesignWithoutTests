@@ -18,7 +18,7 @@ public class Controllers {
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
-        maybePriceForReal.ifPresent(price -> purchaseInProgress.addItemPrice(price));
+        maybePriceForReal.ifPresent(purchaseInProgress::addItemPrice);
 
         return maybePriceForReal
                 .map(Product::formatPrice)
