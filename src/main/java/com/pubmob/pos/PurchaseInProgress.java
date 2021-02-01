@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseInProgress {
-    private final List<Product> products;
+    private final List<Product> items;
 
     public PurchaseInProgress() {
-        this.products = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
-    public boolean addItemPrice(Product product) {
-        return products.add(product);
+    public boolean addItem(Product item) {
+        return items.add(item);
     }
 
     private int calculateTotal() {
-        return products.stream().map(Product::cost).reduce(0, Integer::sum);
+        return items.stream().map(Product::cost).reduce(0, Integer::sum);
     }
 
     private void reset() {
-        products.clear();
+        items.clear();
     }
 
     public int finishPurchase() {
