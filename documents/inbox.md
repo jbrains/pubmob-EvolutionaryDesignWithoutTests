@@ -1,8 +1,5 @@
 # Today's session plan
 
-- add optional sales tax called "PST" of 8%
-    - format the product with "P"
-    - add the tax amount when computing the total of a purchase
 - separate formatting behavior from printing to stdout.
 
 # Inbox
