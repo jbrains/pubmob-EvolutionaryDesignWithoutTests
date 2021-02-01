@@ -11,10 +11,6 @@ public class Product {
         this.gstApplies = gstApplies;
     }
 
-    public Product(int netPrice) {
-        this(netPrice, false);
-    }
-
     public int cost() {
         return netPrice() + (gstApplies ? salesTaxInCents() : 0);
     }
