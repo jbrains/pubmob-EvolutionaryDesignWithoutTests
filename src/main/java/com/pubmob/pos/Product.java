@@ -32,7 +32,7 @@ public class Product {
         final String anyTaxApplied = textIfApplies(gstApplies || pstApplies, " ");
         final String gstApplied = textIfApplies(gstApplies, "G");
         final String pstApplied = textIfApplies(pstApplies, "P");
-        return String.format("%s%s%s%s", formattedNetPrice, anyTaxApplied, gstApplied, pstApplied);
+        return new Formatter().formatString("%s%s%s%s", formattedNetPrice, anyTaxApplied, gstApplied, pstApplied);
     }
 
     // SMELL I don't like this function name
