@@ -11,7 +11,7 @@ public class Controllers {
         this.purchaseInProgress = purchaseInProgress;
     }
 
-    public String handleTotal() {
+    public String handleTotal(String ignored) {
         return String.format("Total: %s", MonetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase()));
     }
 

@@ -31,7 +31,7 @@ public class PointOfSaleTerminal {
 
     private static String handleCommand(Controllers controllers, String command) {
         if ("total".equals(command)) {
-            return controllers.handleTotal();
+            return controllers.handleTotal(command);
         }
         return controllers.handleBarcode(command);
     }
