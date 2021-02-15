@@ -6,6 +6,7 @@ public class Controllers {
     private final PurchaseInProgress purchaseInProgress;
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
+    private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
 
     public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
@@ -14,7 +15,7 @@ public class Controllers {
 
     public String handleTotal(String ignored) {
         final String template = "Total: %s";
-        final String parameter = new MonetaryAmountFormatter().formatMonetaryAmount(purchaseInProgress.finishPurchase());
+        final String parameter = monetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase());
         return formatter.formatString(template, parameter);
     }
 
