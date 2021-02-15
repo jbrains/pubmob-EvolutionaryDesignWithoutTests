@@ -10,6 +10,7 @@ public class PointOfSaleTerminal {
     public static void main(String[] args) {
         System.out.println("Point of Sale Terminal.");
 
+        // REFACTOR Inject formatting behavior into Controllers?
         Controllers controllers = new Controllers(
                 new ProductCatalog(
                         Map.of(
