@@ -7,6 +7,7 @@ public class Product {
     private final int netPrice;
     private final boolean gstApplies;
     private final boolean pstApplies;
+    private final Formatter formatter = new Formatter();
 
     public Product(final int netPrice, final boolean gstApplies, boolean pstApplies) {
         this.netPrice = netPrice;
@@ -32,7 +33,7 @@ public class Product {
         final String anyTaxApplied = textIfApplies(gstApplies || pstApplies, " ");
         final String gstApplied = textIfApplies(gstApplies, "G");
         final String pstApplied = textIfApplies(pstApplies, "P");
-        return new Formatter().formatString("%s%s%s%s", formattedNetPrice, anyTaxApplied, gstApplied, pstApplied);
+        return formatter.formatString("%s%s%s%s", formattedNetPrice, anyTaxApplied, gstApplied, pstApplied);
     }
 
     // SMELL I don't like this function name
