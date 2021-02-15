@@ -24,7 +24,7 @@ public class Controllers {
 
         final String template = "Barcode not found: %s.";
         return maybePriceForReal
-                .map(Product::formatPrice)
+                .map(product -> formatString("%s", product.formatPrice()))
                 .orElse(formatString(template, barcode));
     }
 
