@@ -14,9 +14,9 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        final String template = "Total: %s";
-        final String parameter = monetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase());
-        return formatter.formatString(template, parameter);
+        return formatter.formatString(
+                "Total: %s",
+                monetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase()));
     }
 
     public String handleBarcode(String barcode) {
@@ -24,9 +24,8 @@ public class Controllers {
 
         maybePriceForReal.ifPresent(purchaseInProgress::addItem);
 
-        final String template = "Barcode not found: %s.";
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
-                .orElse(formatter.formatString(template, barcode));
+                .orElse(formatter.formatString("Barcode not found: %s.", barcode));
     }
 }
