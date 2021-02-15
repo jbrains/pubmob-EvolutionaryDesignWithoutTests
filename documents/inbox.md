@@ -1,6 +1,6 @@
 # Today's session plan
 
-- separate formatting behavior from printing to stdout.
+- gather formatting behavior into one place (scatter it less).
 
 # Inbox
 
