@@ -29,7 +29,7 @@ public class Product {
     }
 
     public String formatPrice() {
-        final String formattedNetPrice = MonetaryAmountFormatter.formatMonetaryAmount(this.netPrice);
+        final String formattedNetPrice = new MonetaryAmountFormatter().formatMonetaryAmount(this.netPrice);
         final String anyTaxApplied = textIfApplies(gstApplies || pstApplies, " ");
         final String gstApplied = textIfApplies(gstApplies, "G");
         final String pstApplied = textIfApplies(pstApplies, "P");

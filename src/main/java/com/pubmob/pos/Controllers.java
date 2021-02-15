@@ -14,7 +14,7 @@ public class Controllers {
 
     public String handleTotal(String ignored) {
         final String template = "Total: %s";
-        final String parameter = MonetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase());
+        final String parameter = new MonetaryAmountFormatter().formatMonetaryAmount(purchaseInProgress.finishPurchase());
         return formatter.formatString(template, parameter);
     }
 
