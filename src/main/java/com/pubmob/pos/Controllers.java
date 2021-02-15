@@ -12,7 +12,9 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        return String.format("Total: %s", MonetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase()));
+        final String template = "Total: %s";
+        final String parameter = MonetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase());
+        return formatString(template, parameter);
     }
 
     public String handleBarcode(String barcode) {
@@ -20,8 +22,13 @@ public class Controllers {
 
         maybePriceForReal.ifPresent(purchaseInProgress::addItem);
 
+        final String template = "Barcode not found: %s.";
         return maybePriceForReal
                 .map(Product::formatPrice)
-                .orElse(String.format("Barcode not found: %s.", barcode));
+                .orElse(formatString(template, barcode));
+    }
+
+    private String formatString(final String template, final String arg1) {
+        return String.format(template, arg1);
     }
 }
