@@ -31,11 +31,12 @@ We have a standalone Java application that reads input from `stdin` and writes o
 
 `PROJECT_ROOT` is the root directory of this project, meaning the directory into which you cloned the repository.
 
-1. Install Java/JDK and gradle. The JDK should already have bundled jshell.
+1. Install Java/JDK and gradle. The JDK should already have bundled jshell. This project builds and runs correctly with Java 11 or higher.
 1. `./gradlew clean run --warning-mode all --console plain`. The switch `--console plain` is important, because otherwise
 gradle's rich console deletes your input as the application processes it. This could confuse you if you didn't know that
 gradle would do that. :)
 1. `jshell --class-path $PROJECT_ROOT/build/classes/java/main` to run the REPL.
+1. When importing this project into your IDE, please note the minimum Java language level of 11. We'll raise this if we decide to use more advanced language features in the future.
 
 ### Command Language
 
