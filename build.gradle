@@ -11,6 +11,12 @@ repositories {
     jcenter()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(15)
+    }
+}
+
 application {
     mainClass.set("com.pubmob.pos.PointOfSaleTerminal")
 }
