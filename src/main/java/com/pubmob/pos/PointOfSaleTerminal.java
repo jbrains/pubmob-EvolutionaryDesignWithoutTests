@@ -13,10 +13,10 @@ public class PointOfSaleTerminal {
         // REFACTOR Inject Formatter into Controllers?
         Controllers controllers = new Controllers(
                 new ProductCatalog(
-                        Map.of(
-                                "12345", new Product(550, false, true),
-                                "23456", new Product(1015, true, false),
-                                "34567", new Product(1000, true, true))),
+                        Map.ofEntries(
+                                catalogItem("12345", new Product(550, false, true)),
+                                catalogItem("23456", new Product(1015, true, false)),
+                                catalogItem("34567", new Product(1000, true, true)))),
                 new PurchaseInProgress());
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
@@ -27,6 +27,10 @@ public class PointOfSaleTerminal {
                 .forEach(System.out::println);
 
         System.out.println("Done.");
+    }
+
+    private static Map.Entry<String, Product> catalogItem(final String barcode, final Product product) {
+        return Map.entry(barcode, product);
     }
 
     private static String handleCommand(Controllers controllers, String command) {
