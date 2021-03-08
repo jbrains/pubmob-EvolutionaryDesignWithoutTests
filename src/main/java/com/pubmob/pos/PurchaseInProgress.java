@@ -1,6 +1,7 @@
 package com.pubmob.pos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PurchaseInProgress {
@@ -26,5 +27,9 @@ public class PurchaseInProgress {
         final int totalInCents = calculateTotal();
         reset();
         return totalInCents;
+    }
+
+    public List<Product> allProducts() {
+        return Collections.unmodifiableList(items);
     }
 }

@@ -1,6 +1,7 @@
 package com.pubmob.pos;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Controllers {
     private final PurchaseInProgress purchaseInProgress;
@@ -14,7 +15,10 @@ public class Controllers {
     }
 
     public String handleReceipt(final String ignored) {
-        return "Coming soon!";
+        return purchaseInProgress.allProducts()
+                .stream()
+                .map(Product::formatPrice)
+                .collect(Collectors.joining("\n"));
     }
 
     public String handleTotal(String ignored) {
