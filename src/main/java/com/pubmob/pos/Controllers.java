@@ -13,6 +13,10 @@ public class Controllers {
         this.purchaseInProgress = purchaseInProgress;
     }
 
+    public String handleReceipt(final String ignored) {
+        return "Coming soon!";
+    }
+
     public String handleTotal(String ignored) {
         return formatter.formatString(
                 "Total: %s",

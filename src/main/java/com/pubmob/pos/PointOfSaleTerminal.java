@@ -34,7 +34,7 @@ public class PointOfSaleTerminal {
             return controllers.handleTotal(command);
         }
         else if ("receipt".equals(command)) {
-            return "Coming soon!";
+            return controllers.handleReceipt(command);
         }
         return controllers.handleBarcode(command);
     }
