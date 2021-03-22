@@ -23,7 +23,7 @@ public class Controllers {
 
         String totalText = handleTotal(ignored);
 
-        if (purchaseInProgress.canAskForAReceipt) {
+        if (purchaseInProgress.canAskForAReceipt()) {
             return Stream.of(itemsText, totalText)
                     .collect(Collectors.joining("\n"));
         } else {
@@ -32,33 +32,22 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        final int totalAmountInCents = completePurchase();
+        final int totalAmountInCents = purchaseInProgress.completePurchase();
 
         return formatter.formatString(
                 "Total: %s",
                 monetaryAmountFormatter.formatMonetaryAmount(totalAmountInCents));
     }
 
-    private int completePurchase() {
-        purchaseInProgress.canAskForAReceipt = true;
-        final int totalAmountInCents = purchaseInProgress.finishPurchase();
-        return totalAmountInCents;
-    }
-
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
         maybePriceForReal.ifPresent(item -> {
-            beginPurchaseWith(item);
+            purchaseInProgress.beginPurchaseWith(item);
         });
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
                 .orElse(formatter.formatString("Barcode not found: %s.", barcode));
-    }
-
-    private void beginPurchaseWith(final Product item) {
-        purchaseInProgress.canAskForAReceipt = false;
-        purchaseInProgress.addItem(item);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PurchaseInProgress {
     private final List<Product> items;
-    public boolean canAskForAReceipt = false;
+    private boolean canAskForAReceipt = false;
 
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
@@ -32,5 +32,20 @@ public class PurchaseInProgress {
 
     public List<Product> allProducts() {
         return Collections.unmodifiableList(items);
+    }
+
+    public int completePurchase() {
+        canAskForAReceipt = true;
+        final int totalAmountInCents = finishPurchase();
+        return totalAmountInCents;
+    }
+
+    public void beginPurchaseWith(final Product item) {
+        canAskForAReceipt = false;
+        addItem(item);
+    }
+
+    public boolean canAskForAReceipt() {
+        return canAskForAReceipt;
     }
 }
