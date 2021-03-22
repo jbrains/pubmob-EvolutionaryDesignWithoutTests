@@ -24,22 +24,18 @@ public class PurchaseInProgress {
         items.clear();
     }
 
-    public int finishPurchase() {
-        final int totalInCents = calculateTotal();
-        reset();
-        return totalInCents;
-    }
-
     public List<Product> allProducts() {
         return Collections.unmodifiableList(items);
     }
 
     public int completePurchase() {
+        final int totalInCents = calculateTotal();
         canAskForAReceipt = true;
-        final int totalAmountInCents = finishPurchase();
-        return totalAmountInCents;
+        reset();
+        return totalInCents;
     }
 
+    // SMELL Shouldn't this be in the constructor?
     public void beginPurchaseWith(final Product item) {
         canAskForAReceipt = false;
         addItem(item);
