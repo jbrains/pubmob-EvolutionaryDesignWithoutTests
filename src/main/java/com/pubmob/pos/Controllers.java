@@ -42,7 +42,10 @@ public class Controllers {
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
-        maybePriceForReal.ifPresent(purchaseInProgress::addItem);
+        maybePriceForReal.ifPresent(item -> {
+            purchaseInProgress.addItem(item);
+            canAskForAReceipt = false;
+        });
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
