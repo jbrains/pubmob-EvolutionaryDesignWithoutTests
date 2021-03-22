@@ -45,6 +45,7 @@ public class Controllers {
         maybePriceForReal.ifPresent(item -> {
             purchaseInProgress.beginPurchaseWith(item);
         });
+        // SMELL Why is this called "begin purchase with"?! Sometimes it's just "add". :(
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
