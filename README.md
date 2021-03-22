@@ -42,6 +42,7 @@ gradle would do that. :)
 
 - `q`: quit the application
 - `total`: end a shopper's purchase and print the total amount of money that the shopper needs to pay
+- `receipt`: print a receipt for the most-recently-completed purchase (feature in progress)  
 - everything else: barcode of the product to add to the shopper's purchase in progress
 
 ### Further Documentation
