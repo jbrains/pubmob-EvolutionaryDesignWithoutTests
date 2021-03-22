@@ -42,10 +42,8 @@ public class Controllers {
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
-        maybePriceForReal.ifPresent(item -> {
-            purchaseInProgress.beginPurchaseWith(item);
-        });
         // SMELL Why is this called "begin purchase with"?! Sometimes it's just "add". :(
+        maybePriceForReal.ifPresent(purchaseInProgress::beginPurchaseWith);
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
