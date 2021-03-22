@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PurchaseInProgress {
     private final List<Product> items;
+    public boolean canAskForAReceipt = false;
 
     public PurchaseInProgress() {
         this.items = new ArrayList<>();

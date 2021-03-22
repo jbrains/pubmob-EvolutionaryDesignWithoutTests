@@ -25,7 +25,7 @@ public class Controllers {
 
         String totalText = handleTotal(ignored);
 
-        if (canAskForAReceipt) {
+        if (canAskForAReceipt && purchaseInProgress.canAskForAReceipt) {
             return Stream.of(itemsText, totalText)
                     .collect(Collectors.joining("\n"));
         } else {
@@ -43,6 +43,7 @@ public class Controllers {
 
     private int completePurchase() {
         canAskForAReceipt = true;
+        purchaseInProgress.canAskForAReceipt = true;
         final int totalAmountInCents = purchaseInProgress.finishPurchase();
         return totalAmountInCents;
     }
@@ -61,6 +62,7 @@ public class Controllers {
 
     private void beginPurchaseWith(final Product item) {
         canAskForAReceipt = false;
+        purchaseInProgress.canAskForAReceipt = false;
         purchaseInProgress.addItem(item);
     }
 }
