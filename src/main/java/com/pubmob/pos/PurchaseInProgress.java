@@ -12,10 +12,6 @@ public class PurchaseInProgress {
         this.items = new ArrayList<>();
     }
 
-    public boolean addItem(Product item) {
-        return items.add(item);
-    }
-
     private int calculateTotal() {
         return items.stream().map(Product::cost).reduce(0, Integer::sum);
     }
@@ -38,7 +34,7 @@ public class PurchaseInProgress {
     // SMELL Shouldn't this be in the constructor?
     public void beginPurchaseWith(final Product item) {
         canAskForAReceipt = false;
-        addItem(item);
+        items.add(item);
     }
 
     public boolean canAskForAReceipt() {
