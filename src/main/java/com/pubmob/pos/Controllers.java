@@ -6,10 +6,11 @@ import java.util.stream.Stream;
 
 public class Controllers {
     private final PurchaseInProgress purchaseInProgress;
+    private boolean canAskForAReceipt = false;
+
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
-    private boolean canAskForAReceipt = false;
 
     public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
