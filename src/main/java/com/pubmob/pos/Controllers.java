@@ -9,6 +9,7 @@ public class Controllers {
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
+    private boolean canAskForAReceipt = true;
 
     public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
@@ -23,8 +24,12 @@ public class Controllers {
 
         String totalText = handleTotal(ignored);
 
-        return Stream.of(itemsText, totalText)
-                .collect(Collectors.joining("\n"));
+        if (canAskForAReceipt) {
+            return Stream.of(itemsText, totalText)
+                    .collect(Collectors.joining("\n"));
+        } else {
+            return "There is no completed purchase, so there is no receipt to print.";
+        }
     }
 
     public String handleTotal(String ignored) {
