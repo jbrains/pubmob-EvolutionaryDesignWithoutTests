@@ -16,10 +16,6 @@ public class PurchaseInProgress {
         return items.stream().map(Product::cost).reduce(0, Integer::sum);
     }
 
-    private void reset() {
-        items.clear();
-    }
-
     public List<Product> allProducts() {
         return Collections.unmodifiableList(items);
     }
@@ -27,7 +23,7 @@ public class PurchaseInProgress {
     public int completePurchase() {
         final int totalInCents = calculateTotal();
         canAskForAReceipt = true;
-        reset();
+        items.clear();
         return totalInCents;
     }
 
