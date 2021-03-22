@@ -7,8 +7,8 @@
   - Add a header with company identifying information (name, address, phone number, email...)
   - Add a timestamp for the receipt
   - Line up all the decimal points
-  - Decide when is it OK for the cashier to ask for the receipt?
-    - Only at the end of the purchase? or during the purchase?
+  - Clean up before moving on:
+    - **Stop reusing a single instance of `PurchaseInProgress` to represent the purchase in progress. Maintaining the state has already become too complicated!**
 
 # Inbox
 
