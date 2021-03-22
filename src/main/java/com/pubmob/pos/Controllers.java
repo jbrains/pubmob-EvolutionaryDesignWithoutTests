@@ -6,8 +6,6 @@ import java.util.stream.Stream;
 
 public class Controllers {
     private final PurchaseInProgress purchaseInProgress;
-    private boolean canAskForAReceipt = false;
-
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
@@ -25,7 +23,7 @@ public class Controllers {
 
         String totalText = handleTotal(ignored);
 
-        if (canAskForAReceipt && purchaseInProgress.canAskForAReceipt) {
+        if (purchaseInProgress.canAskForAReceipt) {
             return Stream.of(itemsText, totalText)
                     .collect(Collectors.joining("\n"));
         } else {
@@ -42,7 +40,6 @@ public class Controllers {
     }
 
     private int completePurchase() {
-        canAskForAReceipt = true;
         purchaseInProgress.canAskForAReceipt = true;
         final int totalAmountInCents = purchaseInProgress.finishPurchase();
         return totalAmountInCents;
@@ -61,7 +58,6 @@ public class Controllers {
     }
 
     private void beginPurchaseWith(final Product item) {
-        canAskForAReceipt = false;
         purchaseInProgress.canAskForAReceipt = false;
         purchaseInProgress.addItem(item);
     }
