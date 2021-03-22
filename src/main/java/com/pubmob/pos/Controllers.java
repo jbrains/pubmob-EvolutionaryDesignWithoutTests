@@ -33,22 +33,33 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        canAskForAReceipt = true;
+        final int totalAmountInCents = completePurchase();
+
         return formatter.formatString(
                 "Total: %s",
-                monetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase()));
+                monetaryAmountFormatter.formatMonetaryAmount(totalAmountInCents));
+    }
+
+    private int completePurchase() {
+        canAskForAReceipt = true;
+        final int totalAmountInCents = purchaseInProgress.finishPurchase();
+        return totalAmountInCents;
     }
 
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
         maybePriceForReal.ifPresent(item -> {
-            purchaseInProgress.addItem(item);
-            canAskForAReceipt = false;
+            beginPurchaseWith(item);
         });
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
                 .orElse(formatter.formatString("Barcode not found: %s.", barcode));
+    }
+
+    private void beginPurchaseWith(final Product item) {
+        canAskForAReceipt = false;
+        purchaseInProgress.addItem(item);
     }
 }
