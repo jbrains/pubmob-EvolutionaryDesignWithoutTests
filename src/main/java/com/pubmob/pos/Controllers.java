@@ -33,6 +33,7 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
+        canAskForAReceipt = true;
         return formatter.formatString(
                 "Total: %s",
                 monetaryAmountFormatter.formatMonetaryAmount(purchaseInProgress.finishPurchase()));
