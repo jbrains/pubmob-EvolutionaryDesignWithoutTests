@@ -1,9 +1,7 @@
 # Today's session plan
 
 - Print a receipt
-  - **DEFECT**. Printing a receipt after completing the purchase causes the receipt to be empty.
-  - **DEFECT**. Printing a receipt incorrectly completes the purchase.
-  - **DEFECT**. We can print a receipt before the first purchase starts.
+  - **DEFECT**. Trying to print a receipt before we have started the first purchase **kills the process**.
   - Print the barcode with each item in the receipt
     - Include the barcode when we add an item to the purchase in progress
       - Use Map.Entry for now, then introduce a PurchaseItem/CatalogItem class
