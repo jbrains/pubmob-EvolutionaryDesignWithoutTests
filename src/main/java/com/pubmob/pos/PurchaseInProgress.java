@@ -16,10 +16,6 @@ public class PurchaseInProgress {
         return items.stream().map(Product::cost).reduce(0, Integer::sum);
     }
 
-    public List<Product> allProducts() {
-        return Collections.unmodifiableList(items);
-    }
-
     public static class PurchaseInfo {
         public final int totalInCents;
         public final List<Product> items;
