@@ -9,6 +9,7 @@ public class Controllers {
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
+    private PurchaseInProgress.PurchaseInfo purchaseInfo;
 
     public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
@@ -16,12 +17,12 @@ public class Controllers {
     }
 
     public String handleReceipt(final String ignored) {
-        String itemsText = purchaseInProgress.allProducts()
+        String itemsText = purchaseInfo.items
                 .stream()
                 .map(Product::formatPrice)
                 .collect(Collectors.joining("\n"));
 
-        String totalText = handleTotal(ignored);
+        String totalText = formatTotal(purchaseInfo.totalInCents);
 
         if (purchaseInProgress.canAskForAReceipt()) {
             return Stream.of(itemsText, totalText)
@@ -32,8 +33,13 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        final int totalAmountInCents = purchaseInProgress.completePurchase();
+        purchaseInfo = purchaseInProgress.completePurchase();
+        final int totalAmountInCents = purchaseInfo.totalInCents;
 
+        return formatTotal(totalAmountInCents);
+    }
+
+    private String formatTotal(final int totalAmountInCents) {
         return formatter.formatString(
                 "Total: %s",
                 monetaryAmountFormatter.formatMonetaryAmount(totalAmountInCents));

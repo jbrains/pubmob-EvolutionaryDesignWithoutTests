@@ -20,11 +20,22 @@ public class PurchaseInProgress {
         return Collections.unmodifiableList(items);
     }
 
-    public int completePurchase() {
+    public static class PurchaseInfo {
+        public final int totalInCents;
+        public final List<Product> items;
+
+        public PurchaseInfo(final int totalInCents, final List<Product> items) {
+            this.totalInCents = totalInCents;
+            this.items = new ArrayList(items);
+        }
+    }
+
+    public PurchaseInfo completePurchase() {
         final int totalInCents = calculateTotal();
+        final PurchaseInfo purchaseInfo = new PurchaseInfo(totalInCents, items);
         canAskForAReceipt = true;
         items.clear();
-        return totalInCents;
+        return purchaseInfo;
     }
 
     // SMELL Shouldn't this be in the constructor?
