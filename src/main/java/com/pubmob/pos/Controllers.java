@@ -17,6 +17,10 @@ public class Controllers {
     }
 
     public String handleReceipt(final String ignored) {
+        if (purchaseInfo == null) {
+            return "There is no recently completed purchase for which to print a receipt.";
+        }
+
         String itemsText = purchaseInfo.items
                 .stream()
                 .map(Product::formatPrice)
