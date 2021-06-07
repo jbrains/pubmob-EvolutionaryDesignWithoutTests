@@ -1,5 +1,6 @@
 package com.pubmob.pos;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,19 +22,18 @@ public class Controllers {
             return "There is no recently completed purchase for which to print a receipt.";
         }
 
-        String itemsText = formatItems();
+        String itemsText = formatItems(recentlyCompletedPurchase.items);
         String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
 
         return Stream.of(itemsText, totalText)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String formatItems() {
-        String itemsText = recentlyCompletedPurchase.items
+    private String formatItems(List<Product> items) {
+        return items
                 .stream()
                 .map(Product::formatPrice)
                 .collect(Collectors.joining("\n"));
-        return itemsText;
     }
 
     public String handleTotal(String ignored) {
