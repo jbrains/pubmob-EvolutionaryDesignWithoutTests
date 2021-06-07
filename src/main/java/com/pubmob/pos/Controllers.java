@@ -9,7 +9,7 @@ public class Controllers {
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
-    private PurchaseInProgress.PurchaseInfo purchaseInfo;
+    private PurchaseInProgress.PurchaseInfo recentlyCompletedPurchase;
 
     public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
         this.productCatalog = productCatalog;
@@ -17,16 +17,16 @@ public class Controllers {
     }
 
     public String handleReceipt(final String ignored) {
-        if (purchaseInfo == null) {
+        if (recentlyCompletedPurchase == null) {
             return "There is no recently completed purchase for which to print a receipt.";
         }
 
-        String itemsText = purchaseInfo.items
+        String itemsText = recentlyCompletedPurchase.items
                 .stream()
                 .map(Product::formatPrice)
                 .collect(Collectors.joining("\n"));
 
-        String totalText = formatTotal(purchaseInfo.totalInCents);
+        String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
 
         if (purchaseInProgress.canAskForAReceipt()) {
             return Stream.of(itemsText, totalText)
@@ -37,8 +37,8 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        purchaseInfo = purchaseInProgress.completePurchase();
-        final int totalAmountInCents = purchaseInfo.totalInCents;
+        recentlyCompletedPurchase = purchaseInProgress.completePurchase();
+        final int totalAmountInCents = recentlyCompletedPurchase.totalInCents;
 
         return formatTotal(totalAmountInCents);
     }
