@@ -1,7 +1,7 @@
 # Today's session plan
 
 - Print a receipt
-  - **DEFECT**. Trying to print a receipt before we have started the first purchase **kills the process**.
+  - What happens if we have a total with no items? scenario
   - Print the barcode with each item in the receipt
     - Include the barcode when we add an item to the purchase in progress
       - Use Map.Entry for now, then introduce a PurchaseItem/CatalogItem class
@@ -22,3 +22,9 @@ These items are _not_ in priority order.
   - Export to CSV
 - (Re)print a receipt for a past purchase
 - HST in PEI
+
+
+
+# Notes
+General intention: Print recent purchase
+
