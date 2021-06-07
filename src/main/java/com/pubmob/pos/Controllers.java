@@ -21,10 +21,7 @@ public class Controllers {
             return "There is no recently completed purchase for which to print a receipt.";
         }
 
-        String itemsText = recentlyCompletedPurchase.items
-                .stream()
-                .map(Product::formatPrice)
-                .collect(Collectors.joining("\n"));
+        String itemsText = formatItems();
 
         String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
 
@@ -34,6 +31,14 @@ public class Controllers {
         } else {
             return "There is no completed purchase, so there is no receipt to print.";
         }
+    }
+
+    private String formatItems() {
+        String itemsText = recentlyCompletedPurchase.items
+                .stream()
+                .map(Product::formatPrice)
+                .collect(Collectors.joining("\n"));
+        return itemsText;
     }
 
     public String handleTotal(String ignored) {
