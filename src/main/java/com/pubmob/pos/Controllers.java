@@ -22,7 +22,7 @@ public class Controllers {
             return "There is no recently completed purchase for which to print a receipt.";
         }
 
-        if (!purchaseInProgress.canAskForAReceipt()) {
+        if (purchaseInProgress.isPurchaseInProgress()) {
             return "There is a purchase in progress, please complete it before printing the receipt.";
         }
 

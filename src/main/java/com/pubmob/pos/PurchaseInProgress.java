@@ -5,14 +5,19 @@ import java.util.List;
 
 public class PurchaseInProgress {
     private final List<Product> items;
-    private boolean canAskForAReceipt = false;
+    private boolean isPurchaseInProgress;
 
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
+        this.isPurchaseInProgress = false;
     }
 
     private int calculateTotal() {
         return items.stream().map(Product::cost).reduce(0, Integer::sum);
+    }
+
+    public boolean isPurchaseInProgress() {
+        return isPurchaseInProgress;
     }
 
     public static class PurchaseInfo {
@@ -28,18 +33,14 @@ public class PurchaseInProgress {
     public PurchaseInfo completePurchase() {
         final int totalInCents = calculateTotal();
         final PurchaseInfo purchaseInfo = new PurchaseInfo(totalInCents, items);
-        canAskForAReceipt = true;
+        isPurchaseInProgress = false;
         items.clear();
         return purchaseInfo;
     }
 
     // SMELL Shouldn't this be in the constructor?
     public void beginPurchaseWith(final Product item) {
-        canAskForAReceipt = false;
+        isPurchaseInProgress = true;
         items.add(item);
-    }
-
-    public boolean canAskForAReceipt() {
-        return canAskForAReceipt;
     }
 }
