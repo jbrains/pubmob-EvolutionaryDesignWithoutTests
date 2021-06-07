@@ -28,3 +28,5 @@ These items are _not_ in priority order.
 # Notes
 General intention: Print recent purchase
 
+# Future idea
+"split bill" scenario  --> 2 orders and pay separately
