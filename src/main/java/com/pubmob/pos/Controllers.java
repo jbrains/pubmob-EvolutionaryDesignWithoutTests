@@ -18,8 +18,12 @@ public class Controllers {
     }
 
     public String handleReceipt(final String ignored) {
-        if (recentlyCompletedPurchase == null || !purchaseInProgress.canAskForAReceipt()) {
+        if (recentlyCompletedPurchase == null) {
             return "There is no recently completed purchase for which to print a receipt.";
+        }
+
+        if (!purchaseInProgress.canAskForAReceipt()) {
+            return "There is a purchase in progress, please complete it before printing the receipt.";
         }
 
         String itemsText = formatItems(recentlyCompletedPurchase.items);
