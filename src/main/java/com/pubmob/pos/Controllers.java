@@ -20,17 +20,15 @@ public class Controllers {
         if (recentlyCompletedPurchase == null) {
             return "There is no recently completed purchase for which to print a receipt.";
         }
-
-        String itemsText = formatItems();
-
-        String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
-
-        if (purchaseInProgress.canAskForAReceipt()) {
-            return Stream.of(itemsText, totalText)
-                    .collect(Collectors.joining("\n"));
-        } else {
+        if (!purchaseInProgress.canAskForAReceipt()) {
             return "There is no completed purchase, so there is no receipt to print.";
         }
+
+        String itemsText = formatItems();
+        String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
+
+        return Stream.of(itemsText, totalText)
+                .collect(Collectors.joining("\n"));
     }
 
     private String formatItems() {
