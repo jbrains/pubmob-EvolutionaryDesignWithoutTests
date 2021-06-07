@@ -10,6 +10,9 @@
   - Line up all the decimal points
   - Clean up before moving on:
     - **Stop reusing a single instance of `PurchaseInProgress` to represent the purchase in progress. Maintaining the state has already become too complicated!**
+      - The class and one of its properties have the same name. Improve this _somehow_.
+      - Make the lifecycle of the Purchase in Progress more obvious in the API. For example: Purchase.begin() returns PurchaseInProgress; purchaseInProgress.complete() returns PurchaseInfo.
+    - Can we compute `isPurchaseInProgress` without maintaining a separate state value?
 
 # Inbox
 
@@ -22,11 +25,7 @@ These items are _not_ in priority order.
   - Export to CSV
 - (Re)print a receipt for a past purchase
 - HST in PEI
-
-
+- "split bill" scenario  --> 2 orders and pay separately
 
 # Notes
 General intention: Print recent purchase
-
-# Future idea
-"split bill" scenario  --> 2 orders and pay separately

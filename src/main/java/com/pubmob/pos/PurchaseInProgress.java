@@ -38,7 +38,7 @@ public class PurchaseInProgress {
         return purchaseInfo;
     }
 
-    // SMELL Shouldn't this be in the constructor?
+    // REFACTOR Introduce a Named Constructor begin() and then rename this to add().
     public void beginPurchaseWith(final Product item) {
         isPurchaseInProgress = true;
         items.add(item);
