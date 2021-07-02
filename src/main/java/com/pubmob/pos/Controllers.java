@@ -6,15 +6,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Controllers {
-    private final PurchaseInProgress purchaseInProgress;
+    private final ShoppingSession shoppingSession;
     private final ProductCatalog productCatalog;
     private final Formatter formatter = new Formatter();
     private final MonetaryAmountFormatter monetaryAmountFormatter = new MonetaryAmountFormatter(formatter);
     private PurchaseInProgress.PurchaseInfo recentlyCompletedPurchase;
 
-    public Controllers(ProductCatalog productCatalog, final PurchaseInProgress purchaseInProgress) {
+    public Controllers(ProductCatalog productCatalog, ShoppingSession shoppingSession) {
         this.productCatalog = productCatalog;
-        this.purchaseInProgress = purchaseInProgress;
+        this.shoppingSession = shoppingSession;
     }
 
     public String handleReceipt(final String ignored) {
@@ -22,7 +22,7 @@ public class Controllers {
             return "There is no recently completed purchase for which to print a receipt.";
         }
 
-        if (purchaseInProgress.isPurchaseInProgress()) {
+        if (shoppingSession.isPurchaseInProgress()) {
             return "There is a purchase in progress, please complete it before printing the receipt.";
         }
 
@@ -41,9 +41,8 @@ public class Controllers {
     }
 
     public String handleTotal(String ignored) {
-        recentlyCompletedPurchase = purchaseInProgress.completePurchase();
+        recentlyCompletedPurchase = shoppingSession.completePurchase();
         final int totalAmountInCents = recentlyCompletedPurchase.totalInCents;
-
         return formatTotal(totalAmountInCents);
     }
 
@@ -56,11 +55,11 @@ public class Controllers {
     public String handleBarcode(String barcode) {
         final Optional<Product> maybePriceForReal = productCatalog.findProduct(barcode);
 
-        // SMELL Why is this called "begin purchase with"?! Sometimes it's just "add". :(
-        maybePriceForReal.ifPresent(purchaseInProgress::beginPurchaseWith);
+        maybePriceForReal.ifPresent(shoppingSession::addProduct);
 
         return maybePriceForReal
                 .map(product -> formatter.formatString("%s", product.formatPrice()))
                 .orElse(formatter.formatString("Barcode not found: %s.", barcode));
     }
+
 }

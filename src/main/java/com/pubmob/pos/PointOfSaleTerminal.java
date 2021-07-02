@@ -17,7 +17,7 @@ public class PointOfSaleTerminal {
                                 catalogItem("12345", new Product(550, false, true)),
                                 catalogItem("23456", new Product(1015, true, false)),
                                 catalogItem("34567", new Product(1000, true, true)))),
-                new PurchaseInProgress());
+                new ShoppingSession());
 
         Stream.ofAll(new BufferedReader(new InputStreamReader(System.in)).lines())
                 .map(String::trim)

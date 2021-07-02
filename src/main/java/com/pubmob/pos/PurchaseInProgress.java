@@ -4,20 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseInProgress {
-    private final List<Product> items;
-    private boolean isPurchaseInProgress;
+    public final List<Product> items;
+    public boolean isPurchaseInProgress;
 
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
         this.isPurchaseInProgress = false;
     }
 
-    private int calculateTotal() {
+    public int calculateTotal() {
         return items.stream().map(Product::cost).reduce(0, Integer::sum);
     }
 
     public boolean isPurchaseInProgress() {
         return isPurchaseInProgress;
+    }
+
+    public PurchaseInfo calculateTotalThenWrapInPurchaseInfo() {
+        final int totalInCents = calculateTotal();
+        final PurchaseInfo purchaseInfo = new PurchaseInfo(totalInCents, items);
+        return purchaseInfo;
+    }
+
+    public void clear() {
+        isPurchaseInProgress = false;
+        items.clear();
     }
 
     public static class PurchaseInfo {
@@ -29,6 +40,7 @@ public class PurchaseInProgress {
             this.items = new ArrayList(items);
         }
     }
+
 
     public PurchaseInfo completePurchase() {
         final int totalInCents = calculateTotal();
