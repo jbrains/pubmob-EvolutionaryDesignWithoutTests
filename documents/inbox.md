@@ -8,6 +8,7 @@
   - Add a header with company identifying information (name, address, phone number, email...)
   - Add a timestamp for the receipt
   - Line up all the decimal points
+  - Defect: excessive whitespace when requesting a receipt for an empty Purchase.
   - Clean up before moving on:
     - **Stop reusing a single instance of `PurchaseInProgress` to represent the purchase in progress. Maintaining the state has already become too complicated!**
       - The class and one of its properties have the same name. Improve this _somehow_.
