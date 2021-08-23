@@ -1,13 +1,9 @@
 plugins {
     id 'java'
-
-    // Apply the application plugin to add support for building a CLI application
     id 'application'
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 
