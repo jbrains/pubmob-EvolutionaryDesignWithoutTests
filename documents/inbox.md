@@ -1,10 +1,11 @@
 # Today's session plan
 
 - Clean up before moving on:
+  - Can we compute `isPurchaseInProgress` without maintaining a separate state value?
+  - Make `PurchaseInfo` and `PurchaseInProgress` more similar; maybe collapse them into one thing?
   - **Stop reusing a single instance of `PurchaseInProgress` to represent the purchase in progress. Maintaining the state has already become too complicated!**
     - The class and one of its properties have the same name. Improve this _somehow_.
     - Make the lifecycle of the Purchase in Progress more obvious in the API. For example: Purchase.begin() returns PurchaseInProgress; purchaseInProgress.complete() returns PurchaseInfo.
-  - Can we compute `isPurchaseInProgress` without maintaining a separate state value?
 - Print a receipt
   - What happens if we have a total with no items? scenario
   - Print the barcode with each item in the receipt

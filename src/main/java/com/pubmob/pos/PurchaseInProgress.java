@@ -21,6 +21,7 @@ public class PurchaseInProgress {
     }
 
     public PurchaseInfo calculateTotalThenWrapInPurchaseInfo() {
+        // SMELL We calculate the total from the items, then we pass _both_ into the PurchaseInfo constructor.
         final int totalInCents = calculateTotal();
         final PurchaseInfo purchaseInfo = new PurchaseInfo(totalInCents, items);
         return purchaseInfo;
