@@ -2,6 +2,9 @@
 
 - Clean up before moving on:
   - Make `PurchaseInfo` and `PurchaseInProgress` more similar; maybe collapse them into one thing?
+    - Move `PurchaseInfo.getTotalInCents()` onto `PurchaseInProgress`.
+    - Find clients of `PurchaseInfo`, then make them use the corresponding `PurchaseInProgress` instead. This obviates `PurchaseInfo`.
+    - Rename `PurchaseInProgress` to `Purchase`.
   - **Stop reusing a single instance of `PurchaseInProgress` to represent the purchase in progress. Maintaining the state has already become too complicated!**
     - The class and one of its properties have the same name. Improve this _somehow_.
     - Make the lifecycle of the Purchase in Progress more obvious in the API. For example: Purchase.begin() returns PurchaseInProgress; purchaseInProgress.complete() returns PurchaseInfo.
@@ -14,6 +17,7 @@
   - Add a timestamp for the receipt
   - Line up all the decimal points
   - Defect: excessive whitespace when requesting a receipt for an empty Purchase.
+  - Introduce a View Model class for Receipt that handles formatting instead of `Controllers`.
 
 # Inbox
 
