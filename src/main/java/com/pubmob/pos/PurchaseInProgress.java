@@ -11,6 +11,7 @@ public class PurchaseInProgress {
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
         this.isPurchaseInProgress = false;
+        purchaseInProgressIsConsistent();
     }
 
     public int calculateTotal() {
@@ -21,12 +22,10 @@ public class PurchaseInProgress {
         return isPurchaseInProgress;
     }
 
-    private boolean purchaseInProgressIsConsistent() {
-        boolean awesomeOrNot = this.items.isEmpty() == this.isPurchaseInProgress;
-        if (!awesomeOrNot)
+    private void purchaseInProgressIsConsistent() {
+        boolean statesMatch = this.items.isEmpty() != this.isPurchaseInProgress;
+        if (!statesMatch)
             throw new RuntimeException("BLEH!");
-
-        return awesomeOrNot;
     }
     public PurchaseInfo calculateTotalThenWrapInPurchaseInfo() {
         // SMELL We calculate the total from the items, then we pass _both_ into the PurchaseInfo constructor.
@@ -38,6 +37,7 @@ public class PurchaseInProgress {
     public void clear() {
         isPurchaseInProgress = false;
         items.clear();
+        purchaseInProgressIsConsistent();
     }
 
     public static class PurchaseInfo {
@@ -50,18 +50,10 @@ public class PurchaseInProgress {
         }
     }
 
-
-    public PurchaseInfo completePurchase() {
-        final int totalInCents = calculateTotal();
-        final PurchaseInfo purchaseInfo = new PurchaseInfo(totalInCents, items);
-        isPurchaseInProgress = false;
-        items.clear();
-        return purchaseInfo;
-    }
-
     // REFACTOR Introduce a Named Constructor begin() and then rename this to add().
     public void beginPurchaseWith(final Product item) {
         isPurchaseInProgress = true;
         items.add(item);
+        purchaseInProgressIsConsistent();
     }
 }
