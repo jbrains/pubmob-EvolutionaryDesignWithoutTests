@@ -16,7 +16,7 @@ public class ShoppingSession {
     }
 
     public PurchaseInProgress.PurchaseInfo completePurchase() {
-        final PurchaseInProgress.PurchaseInfo purchaseInfo = purchaseInProgress.calculateTotalThenWrapInPurchaseInfo();
+        final PurchaseInProgress.PurchaseInfo purchaseInfo = purchaseInProgress.summarizePurchase();
         purchaseInProgress.clear();
         return purchaseInfo;
     }

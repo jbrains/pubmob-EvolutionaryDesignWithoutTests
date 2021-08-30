@@ -27,7 +27,7 @@ public class Controllers {
         }
 
         String itemsText = formatItems(recentlyCompletedPurchase.items);
-        String totalText = formatTotal(recentlyCompletedPurchase.totalInCents);
+        String totalText = formatTotal(recentlyCompletedPurchase.getTotalInCents());
 
         return Stream.of(itemsText, totalText)
                 .collect(Collectors.joining("\n"));
@@ -42,7 +42,7 @@ public class Controllers {
 
     public String handleTotal(String ignored) {
         recentlyCompletedPurchase = shoppingSession.completePurchase();
-        final int totalAmountInCents = recentlyCompletedPurchase.totalInCents;
+        final int totalAmountInCents = recentlyCompletedPurchase.getTotalInCents();
         return formatTotal(totalAmountInCents);
     }
 
