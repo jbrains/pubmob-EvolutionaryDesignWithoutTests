@@ -1,3 +1,4 @@
+
 package com.pubmob.pos;
 
 import java.util.ArrayList;
@@ -20,6 +21,13 @@ public class PurchaseInProgress {
         return isPurchaseInProgress;
     }
 
+    private boolean purchaseInProgressIsConsistent() {
+        boolean awesomeOrNot = this.items.isEmpty() == this.isPurchaseInProgress;
+        if (!awesomeOrNot)
+            throw new RuntimeException("BLEH!");
+
+        return awesomeOrNot;
+    }
     public PurchaseInfo calculateTotalThenWrapInPurchaseInfo() {
         // SMELL We calculate the total from the items, then we pass _both_ into the PurchaseInfo constructor.
         final int totalInCents = calculateTotal();
