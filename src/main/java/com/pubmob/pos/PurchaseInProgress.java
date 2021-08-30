@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseInProgress {
-    public final List<Product> items;
-    public boolean isPurchaseInProgress;
+    private final List<Product> items;
 
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
-        this.isPurchaseInProgress = false;
-        purchaseInProgressIsConsistent();
     }
 
     public int calculateTotal() {
@@ -19,14 +16,9 @@ public class PurchaseInProgress {
     }
 
     public boolean isPurchaseInProgress() {
-        return isPurchaseInProgress;
+        return !this.items.isEmpty();
     }
 
-    private void purchaseInProgressIsConsistent() {
-        boolean statesMatch = this.items.isEmpty() != this.isPurchaseInProgress;
-        if (!statesMatch)
-            throw new RuntimeException("BLEH!");
-    }
     public PurchaseInfo calculateTotalThenWrapInPurchaseInfo() {
         // SMELL We calculate the total from the items, then we pass _both_ into the PurchaseInfo constructor.
         final int totalInCents = calculateTotal();
@@ -35,9 +27,7 @@ public class PurchaseInProgress {
     }
 
     public void clear() {
-        isPurchaseInProgress = false;
         items.clear();
-        purchaseInProgressIsConsistent();
     }
 
     public static class PurchaseInfo {
@@ -52,8 +42,6 @@ public class PurchaseInProgress {
 
     // REFACTOR Introduce a Named Constructor begin() and then rename this to add().
     public void beginPurchaseWith(final Product item) {
-        isPurchaseInProgress = true;
         items.add(item);
-        purchaseInProgressIsConsistent();
     }
 }
