@@ -1,4 +1,3 @@
-
 package com.pubmob.pos;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ public class PurchaseInProgress {
     public PurchaseInProgress() {
         this.items = new ArrayList<>();
     }
-
 
     public boolean isPurchaseInProgress() {
         return !this.items.isEmpty();
